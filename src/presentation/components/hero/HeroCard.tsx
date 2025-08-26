@@ -1,9 +1,10 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import { Card } from 'react-native-paper';
 import { HeroEntity } from '../../../domain/entities/hero.entity';
 import { globalColors } from '../../../config/theme/global-theme';
 import { Icons } from '../../../assets/icons';
+import { Text } from 'react-native-paper';
 
 type HeroCardProps = {
   hero: HeroEntity;
@@ -19,18 +20,24 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
           resizeMode="cover"
         />
         <View style={styles.textContainer}>
-          <Text style={styles.heroName}>{hero.name}</Text>
-          <Text style={styles.heroRealName}>{hero.realName}</Text>
+          <Text variant="titleLarge" style={{ color: globalColors.white }}>
+            {hero.name}
+          </Text>
+          <Text variant="bodySmall" style={{ color: globalColors.base }}>
+            {hero.realName}
+          </Text>
           <View style={styles.heroAverageStatContainer}>
             <Icons.Superhero
               fill={globalColors.accent}
               stroke={globalColors.black}
             />
             <View style={{ flex: 1, flexDirection: 'row', gap: 4 }}>
-              <Text style={{ color: globalColors.white }}>
+              <Text variant="bodyMedium" style={{ color: globalColors.white, fontWeight: 'bold' }}>
                 {hero.averageStats}
               </Text>
-              <Text style={styles.heroAverageStatValue}>/ 100</Text>
+              <Text variant="bodyMedium" style={styles.heroAverageStatValue}>
+                / 100
+              </Text>
             </View>
           </View>
         </View>

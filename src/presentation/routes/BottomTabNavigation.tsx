@@ -14,7 +14,6 @@ export const BottomTabNavigation = () => {
         headerTitleStyle: {
           color: globalColors.white,
           fontSize: 24,
-          fontWeight: 'bold',
         },
         headerTitleAlign: 'left',
         headerStyle: {
@@ -29,7 +28,7 @@ export const BottomTabNavigation = () => {
       }}
     >
       <Tab.Screen
-        name="SuperHeroes"
+        name="Superheroes"
         options={{
           tabBarIcon: ({ color }) => (
             <Icons.Superhero fill="none" stroke={color} strokeWidth="2" />

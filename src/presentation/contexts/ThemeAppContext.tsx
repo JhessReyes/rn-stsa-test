@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren } from 'react';
+import { createContext, PropsWithChildren, version } from 'react';
 import {
   NavigationContainer,
   DarkTheme as NavigationDarkTheme,
@@ -7,7 +7,8 @@ import {
 } from '@react-navigation/native';
 import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
 import { adaptNavigationTheme } from 'react-native-paper';
-import { useColorScheme } from 'react-native';
+import { TextStyle, useColorScheme } from 'react-native';
+import { papersFontsConfig } from '../../config/theme/fonts';
 
 const { LightTheme: NavAdaptedLight, DarkTheme: NavAdaptedDark } =
   adaptNavigationTheme({
@@ -32,6 +33,11 @@ export const ThemeAppContext = ({ children }: PropsWithChildren) => {
     ? NavAdaptedDark.fonts
     : NavAdaptedLight.fonts;
 
+  const PoppinsFont = (weight: TextStyle['fontWeight'] = '400') => ({
+    fontFamily: 'Poppins-Regular',
+    fontWeight: weight,
+  });
+
   const combinedTheme = {
     ...basePaperTheme,
     colors: {
@@ -39,15 +45,31 @@ export const ThemeAppContext = ({ children }: PropsWithChildren) => {
       ...navigationColors,
     },
     fonts: {
-      ...basePaperTheme.fonts,
-      ...navigationFonts,
+      ...papersFontsConfig,
     },
   };
 
   const navigationTheme: NavigationThemeType = {
     dark: isDarkTheme,
     colors: navigationColors,
-    fonts: combinedTheme.fonts,
+    fonts: {
+      medium: {
+        fontFamily: 'Poppins-SemiBold',
+        fontWeight: 'normal',
+      },
+      regular: {
+        fontFamily: 'Poppins-Regular',
+        fontWeight: 'normal',
+      },
+      bold: {
+        fontFamily: 'Poppins-Bold',
+        fontWeight: 'normal',
+      },
+      heavy: {
+        fontFamily: 'Poppins-ExtraBold',
+        fontWeight: 'normal',
+      },
+    },
   };
 
   return (
