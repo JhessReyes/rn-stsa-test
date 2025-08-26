@@ -1,10 +1,6 @@
-import { View, Text } from 'react-native';
 import React from 'react';
+import { FavoritesScreens } from '../favorites/FavoritesScreens';
 
 export const TabFavoritesScreen = () => {
-  return (
-    <View>
-      <Text>TabFavoritesScreen</Text>
-    </View>
-  );
+  return <FavoritesScreens />;
 };
