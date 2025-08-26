@@ -1,12 +1,12 @@
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { RootStackNavigator } from './presentation/navigation/RootStackNavigator';
+import { ThemeAppContext } from './presentation/contexts/ThemeAppContext';
 
-export const SuperHeroApp = ({ children }: PropsWithChildren) => {
+export const SuperHeroApp = () => {
   return (
-    <NavigationContainer>
+    <ThemeAppContext>
       <RootStackNavigator />
-    </NavigationContainer>
+    </ThemeAppContext>
   );
 };
