@@ -1,10 +1,11 @@
 import { View, Image, StyleSheet } from 'react-native';
 import React from 'react';
-import { Card } from 'react-native-paper';
+import { Button, Card } from 'react-native-paper';
 import { HeroEntity } from '../../../domain/entities/hero.entity';
 import { globalColors } from '../../../config/theme/global-theme';
 import { Icons } from '../../../assets/icons';
 import { Text } from 'react-native-paper';
+import { FavoriteButton } from './FavoriteButton';
 
 type HeroCardProps = {
   hero: HeroEntity;
@@ -14,11 +15,14 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
   return (
     <Card style={styles.cardContainer}>
       <View style={styles.row}>
-        <Image
-          source={{ uri: hero.avatar }}
-          style={styles.heroImage}
-          resizeMode="cover"
-        />
+        <View style={styles.heroImageContainer}>
+          <Image
+            source={{ uri: hero.avatar }}
+            style={styles.heroImage}
+            resizeMode="cover"
+          />
+          <FavoriteButton />
+        </View>
         <View style={styles.textContainer}>
           <Text variant="titleLarge" style={{ color: globalColors.white }}>
             {hero.name}
@@ -32,7 +36,10 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
               stroke={globalColors.black}
             />
             <View style={{ flex: 1, flexDirection: 'row', gap: 4 }}>
-              <Text variant="bodyMedium" style={{ color: globalColors.white, fontWeight: 'bold' }}>
+              <Text
+                variant="bodyMedium"
+                style={{ color: globalColors.white, fontWeight: 'bold' }}
+              >
                 {hero.averageStats}
               </Text>
               <Text variant="bodyMedium" style={styles.heroAverageStatValue}>
@@ -55,12 +62,16 @@ const styles = StyleSheet.create({
     backgroundColor: globalColors.surface,
     overflow: 'hidden',
   },
+  heroImageContainer: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: 'white',
+  },
   row: {
     flexDirection: 'row',
     flex: 1,
   },
   heroImage: {
-    width: '50%',
     height: 200,
   },
   textContainer: {
