@@ -1,11 +1,7 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
-import { Icons } from '../../../assets/icons';
+import { HeroesScreen } from '../hero/HeroesScreen';
 
 export const TabSuperHeroesScreen = () => {
-  return (
-    <View>
-      <Text style={{ color: 'white' }}>SuperHeroes</Text>
-    </View>
-  );
+  return <HeroesScreen />;
 };

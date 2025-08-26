@@ -1,5 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from '../screens/home/HomeScreen';
+
 import { HeroScreen } from '../screens/hero/HeroScreen';
 
 export type RootStackParamList = {
@@ -11,7 +11,6 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const RootStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="HeroScreen" component={HeroScreen} />
     </Stack.Navigator>
   );

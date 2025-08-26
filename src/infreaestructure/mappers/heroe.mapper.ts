@@ -7,12 +7,17 @@ export class HeroMapper {
       id: heroApiHeroe.id,
       avatar: heroApiHeroe.images.lg,
       name: heroApiHeroe.name,
-      realName: heroApiHeroe.biography.fullName,
-      alterEgos: heroApiHeroe.biography.alterEgos,
+      realName: heroApiHeroe.biography.fullName || 'No real name found.',
+      alterEgos: heroApiHeroe.biography.alterEgos || 'No alter egos found.',
       powerStats: heroApiHeroe.powerstats,
-      averageStats: Object.values(heroApiHeroe.powerstats).reduce(
-        (acc, curr) => acc + curr,
-        0,
+      averageStats: Number(
+        Number(
+          Number(
+            Object.values(heroApiHeroe.powerstats).reduce((acc, curr) => {
+              return acc + curr;
+            }, 0),
+          ) / 6,
+        )?.toFixed(2),
       ),
     };
   }
