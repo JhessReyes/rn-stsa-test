@@ -1,11 +1,10 @@
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getTeams } from '../../../actions/teams/get-all-teams';
 import { globalTheme } from '../../../config/theme/global-theme';
 import { EmptyList } from '../../components/shared/EmptyList';
 import { CreateFirstTeme } from '../../components/team/CreateFirstTeme';
-import { CreateTeamModal } from '../../components/team/CreateTeamModal';
 import { TeamCard } from '../../components/team/TeamCard';
 
 export const TeamsScreen = () => {

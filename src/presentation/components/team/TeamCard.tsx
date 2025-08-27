@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     opacity: 1,
     borderRadius: 16,
+    marginBottom: 10,
     backgroundColor: globalColors.surface,
     overflow: 'hidden',
   },
