@@ -6,6 +6,7 @@ import { globalColors, globalTheme } from '../../../config/theme/global-theme';
 import { HeroCard } from '../../components/hero/HeroCard';
 import { EmptyList } from '../../components/shared/EmptyList';
 import { Text } from 'react-native-paper';
+import { IconMessage } from '../../components/shared/IconMessage';
 
 export const FavoritesScreens = () => {
   const {
@@ -34,7 +35,9 @@ export const FavoritesScreens = () => {
             isEmpty={!heroes?.length}
             isLoading={isLoading}
             empty={{
-              message: 'No favorites added',
+              component: () => (
+                <IconMessage name="favorite" message="Add your own favorites" />
+              ),
             }}
           />
         }
