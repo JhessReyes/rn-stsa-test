@@ -1,18 +1,35 @@
-import { Pressable, StyleSheet } from 'react-native';
-import React from 'react';
-import { Button } from 'react-native-paper';
+import {
+  Pressable,
+  StyleSheet,
+  StyleSheetProperties,
+  ViewStyle,
+} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { globalColors } from '../../../config/theme/global-theme';
 import { Icons } from '../../../assets/icons';
 import { useSwitchFavorite } from '../../hooks/favorite/useSwitchFavorite';
 import { HeroEntity } from '../../../domain/entities/hero.entity';
 
-export const FavoriteButton = ({ hero }: { hero: HeroEntity }) => {
+export const FavoriteButton = ({
+  hero,
+  style,
+}: {
+  hero: HeroEntity;
+  style?: ViewStyle;
+}) => {
   const { mutateAsync, isPending } = useSwitchFavorite();
+
+  const [isFavorite, setIsFavorite] = useState(hero.isFavorite);
+
+  useEffect(() => {
+    setIsFavorite(hero.isFavorite);
+  }, [hero.isFavorite]);
 
   const clickHandler = async () => {
     if (isPending) return;
     try {
       await mutateAsync({ hero });
+      setIsFavorite(!isFavorite);
     } catch (error) {
       console.log(error);
     }
@@ -24,10 +41,11 @@ export const FavoriteButton = ({ hero }: { hero: HeroEntity }) => {
           backgroundColor: pressed ? globalColors.yellow : globalColors.white,
         },
         styles.favoriteButton,
+        style,
       ]}
       onPress={clickHandler}
     >
-      {hero.isFavorite ? (
+      {isFavorite ? (
         <Icons.Heart
           fill={globalColors.white}
           stroke={globalColors.white}

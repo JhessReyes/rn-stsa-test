@@ -3,13 +3,15 @@ import React from 'react';
 import { Button, Text } from 'react-native-paper';
 import { Icons } from '../../../assets/icons';
 import { globalColors } from '../../../config/theme/global-theme';
+import { SvgProps } from 'react-native-svg';
 
 type IconButtonProps = {
-  name: 'teams' | 'add' | 'heart' | 'superhero' | 'favorite';
+  name: 'teams' | 'add' | 'heart' | 'superhero' | 'favorite' | 'left';
   onPress: () => void;
+  iconProps?: SvgProps;
 };
 
-export const IconButton = ({ onPress, name }: IconButtonProps) => {
+export const IconButton = ({ onPress, name, iconProps }: IconButtonProps) => {
   const getIcon = () => {
     const props = {
       width: 12,
@@ -17,6 +19,7 @@ export const IconButton = ({ onPress, name }: IconButtonProps) => {
       color: globalColors.base,
       stroke: globalColors.base,
       strokeWidth: '2',
+      ...iconProps,
     };
     switch (name) {
       case 'teams':
@@ -29,6 +32,8 @@ export const IconButton = ({ onPress, name }: IconButtonProps) => {
         return <Icons.Superhero {...props} />;
       case 'favorite':
         return <Icons.Heart {...props} />;
+      case 'left':
+        return <Icons.Left {...props} />;
       default:
         return <Icons.Add {...props} />;
     }
