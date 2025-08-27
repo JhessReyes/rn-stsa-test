@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { BottomTabNavigation } from '../routes/BottomTabNavigation';
-import { CreateTeamModal } from '../components/teams/CreateTeamModal';
+import { CreateTeamModal } from '../components/team/CreateTeamModal';
 
 export type RootStackParamList = {
   HomeScreen: undefined;

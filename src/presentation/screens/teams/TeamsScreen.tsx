@@ -4,8 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 import { getTeams } from '../../../actions/teams/get-all-teams';
 import { globalTheme } from '../../../config/theme/global-theme';
 import { EmptyList } from '../../components/shared/EmptyList';
-import { CreateFirstTeme } from '../../components/teams/CreateFirstTeme';
-import { CreateTeamModal } from '../../components/teams/CreateTeamModal';
+import { CreateFirstTeme } from '../../components/team/CreateFirstTeme';
+import { CreateTeamModal } from '../../components/team/CreateTeamModal';
+import { TeamCard } from '../../components/team/TeamCard';
 
 export const TeamsScreen = () => {
   const [visible, setVisible] = useState(false);
@@ -40,9 +41,7 @@ export const TeamsScreen = () => {
           />
         }
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <Text style={{ color: 'white' }}> {item.name}</Text>
-        )}
+        renderItem={({ item }) => <TeamCard team={item} />}
         numColumns={1}
         keyExtractor={(item, index) => item.id.toString() + index}
       />
