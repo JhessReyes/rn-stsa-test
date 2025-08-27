@@ -19,7 +19,7 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
   return (
     <Card
       style={styles.cardContainer}
-      onPress={() => navigation.navigate('Hero', { id: hero.id?.toString() })}
+      onPress={() => navigation.navigate('Hero', { hero: hero })}
     >
       <View style={styles.row}>
         <View style={styles.heroImageContainer}>

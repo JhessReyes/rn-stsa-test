@@ -3,10 +3,11 @@ import { BottomTabNavigation } from './BottomTabNavigation';
 import { TeamStackParamList } from './TeamStackNavigator';
 import { HeroScreen } from '../screens/hero/HeroScreen';
 import { SearchHeroScreen } from '../screens/hero/SearchHeroScreen';
+import { HeroEntity } from '../../domain/entities/hero.entity';
 
 export type RootStackParamList = {
   Tabs: undefined;
-  Hero: { id: string };
+  Hero: { hero: HeroEntity };
   SearchHeroModal: undefined;
 };
 
