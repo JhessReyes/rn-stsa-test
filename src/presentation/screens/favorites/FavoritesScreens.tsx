@@ -2,10 +2,9 @@ import { View, FlatList } from 'react-native';
 import React from 'react';
 import { getFavorites } from '../../../actions/favorites/get-all-favorites';
 import { useQuery } from '@tanstack/react-query';
-import { globalColors, globalTheme } from '../../../config/theme/global-theme';
+import { globalTheme } from '../../../config/theme/global-theme';
 import { HeroCard } from '../../components/hero/HeroCard';
 import { EmptyList } from '../../components/shared/EmptyList';
-import { Text } from 'react-native-paper';
 import { IconMessage } from '../../components/shared/IconMessage';
 
 export const FavoritesScreens = () => {
