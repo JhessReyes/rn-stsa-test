@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/jhess/Documents/STARTRACK/SuperHeroApp/build/generated/ios",
+      "program": "/Users/jhess/Documents/STARTRACK/SuperHeroApp/build/generated/ios/build/Debug/outDebug"
+    }
+  ]
+}
