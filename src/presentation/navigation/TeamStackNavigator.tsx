@@ -8,10 +8,11 @@ import { IconButton } from '../components/shared';
 import { Pressable, View } from 'react-native';
 import { AppStackParamList } from './RootStackNavigator';
 import { CreateTeamModal } from '../components/team/CreateTeamModal';
+import { TeamEntity } from '../../domain/entities/team.entity';
 
 export type TeamStackParamList = {
   Teams: undefined;
-  Team: { id: string; name: string };
+  Team: { team: TeamEntity };
 };
 
 const TeamStack = createStackNavigator<AppStackParamList>();
@@ -53,7 +54,7 @@ export const TeamStackNavigator = () => {
       <TeamStack.Screen
         name="Team"
         options={({ route, navigation }) => ({
-          headerTitle: route.params.name,
+          headerTitle: route.params?.team?.name || '',
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Pressable
