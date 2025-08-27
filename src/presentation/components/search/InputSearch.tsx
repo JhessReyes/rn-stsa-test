@@ -10,7 +10,7 @@ type Props = {
 
 export const InputSearch = ({ value, onChangeText }: Props) => {
   return (
-    <View>
+    <View style={{ marginBottom: 20 }}>
       <TextInput
         style={{
           backgroundColor: globalColors.secondary,
