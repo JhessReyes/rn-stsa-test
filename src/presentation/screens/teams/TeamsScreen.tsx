@@ -45,7 +45,6 @@ export const TeamsScreen = () => {
         numColumns={1}
         keyExtractor={(item, index) => item.id.toString() + index}
       />
-      <CreateTeamModal visible={visible} setVisible={setVisible} />
     </View>
   );
 };

@@ -7,6 +7,7 @@ import { Icons } from '../../assets/icons';
 import { IconButton } from '../components/shared';
 import { Pressable, View } from 'react-native';
 import { AppStackParamList } from './RootStackNavigator';
+import { CreateTeamModal } from '../components/team/CreateTeamModal';
 
 export type TeamStackParamList = {
   Teams: undefined;
@@ -15,7 +16,6 @@ export type TeamStackParamList = {
 
 const TeamStack = createStackNavigator<AppStackParamList>();
 export const TeamStackNavigator = () => {
-  const [name, setName] = useState<string>('');
   return (
     <TeamStack.Navigator
       screenOptions={{
@@ -32,7 +32,23 @@ export const TeamStackNavigator = () => {
         },
       }}
     >
-      <TeamStack.Screen name="Teams" component={TeamsScreen} />
+      <TeamStack.Screen
+        name="Teams"
+        options={{
+          headerRight: () => (
+            <View
+              style={{
+                padding: 10,
+                alignContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CreateTeamModal />
+            </View>
+          ),
+        }}
+        component={TeamsScreen}
+      />
 
       <TeamStack.Screen
         name="Team"

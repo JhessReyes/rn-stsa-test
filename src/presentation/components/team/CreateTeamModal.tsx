@@ -10,13 +10,10 @@ import Modal from 'react-native-modal';
 import { globalColors } from '../../../config/theme/global-theme';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { useCreateTeam } from '../../hooks/team/useCreateTeam';
+import { IconButton } from '../shared';
 
-type ModalProps = {
-  visible: boolean;
-  setVisible: (visible: boolean) => void;
-};
-
-export const CreateTeamModal = ({ visible, setVisible }: ModalProps) => {
+export const CreateTeamModal = () => {
+  const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
   const { mutateAsync } = useCreateTeam();
@@ -26,6 +23,7 @@ export const CreateTeamModal = ({ visible, setVisible }: ModalProps) => {
     try {
       if (name.trim().length === 0) return;
       await mutateAsync({ name });
+      setVisible(false);
     } catch (error) {
       setLoading(false);
     } finally {
@@ -37,83 +35,87 @@ export const CreateTeamModal = ({ visible, setVisible }: ModalProps) => {
     setVisible(false);
   };
   return (
-    <Modal
-      isVisible={visible}
-      onBackdropPress={onClose}
-      onSwipeComplete={onClose}
-      swipeDirection="down"
-      animationIn="slideInUp"
-      animationOut="slideOutDown"
-      useNativeDriver
-      useNativeDriverForBackdrop={false}
-      backdropTransitionOutTiming={0.1}
-      backdropOpacity={0.5}
-      style={styles.modal}
-      avoidKeyboard
-    >
-      <View
-        style={[
-          {
-            backgroundColor: globalColors.secondary,
-          },
-          styles.modalContent,
-        ]}
-      >
-        <View style={styles.handle} />
+    <>
+      <IconButton name="add" onPress={() => setVisible(true)} />
 
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-          keyboardVerticalOffset={80}
-        >
-          <Text variant="titleLarge" style={styles.title}>
-            Add a new team
-          </Text>
-          <Text
-            variant="bodySmall"
-            style={{
-              color: globalColors.white,
-              marginBottom: 10,
-            }}
-          >
-            Team name:
-          </Text>
-          <TextInput
-            style={{
+      <Modal
+        isVisible={visible}
+        onBackdropPress={onClose}
+        onSwipeComplete={onClose}
+        swipeDirection="down"
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        useNativeDriver
+        useNativeDriverForBackdrop={false}
+        backdropTransitionOutTiming={0.1}
+        backdropOpacity={0.5}
+        style={styles.modal}
+        avoidKeyboard
+      >
+        <View
+          style={[
+            {
               backgroundColor: globalColors.secondary,
-              height: 40,
-            }}
-            outlineStyle={{
-              borderWidth: 0,
-            }}
-            contentStyle={{
-              backgroundColor: globalColors.white,
-              borderRadius: 10,
-              fontSize: 12,
-            }}
-            placeholder="Ej: Mutantes"
-            value={name}
-            mode="outlined"
-            onChangeText={setName}
-          />
-          <View style={styles.actions}>
-            <Button
+            },
+            styles.modalContent,
+          ]}
+        >
+          <View style={styles.handle} />
+
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            keyboardVerticalOffset={80}
+          >
+            <Text variant="titleLarge" style={styles.title}>
+              Add a new team
+            </Text>
+            <Text
+              variant="bodySmall"
               style={{
-                borderRadius: 10,
-                width: '100%',
+                color: globalColors.white,
+                marginBottom: 10,
               }}
-              loading={loading}
-              disabled={loading}
-              onPress={handleSend}
-              buttonColor={globalColors.accent}
-              textColor="white"
-              mode="contained"
             >
-              Create team
-            </Button>
-          </View>
-        </KeyboardAvoidingView>
-      </View>
-    </Modal>
+              Team name:
+            </Text>
+            <TextInput
+              style={{
+                backgroundColor: globalColors.secondary,
+                height: 40,
+              }}
+              outlineStyle={{
+                borderWidth: 0,
+              }}
+              contentStyle={{
+                backgroundColor: globalColors.white,
+                borderRadius: 10,
+                fontSize: 12,
+              }}
+              placeholder="Ej: Mutantes"
+              value={name}
+              mode="outlined"
+              onChangeText={setName}
+            />
+            <View style={styles.actions}>
+              <Button
+                style={{
+                  borderRadius: 10,
+                  width: '100%',
+                }}
+                loading={loading}
+                disabled={loading}
+                onPress={handleSend}
+                buttonColor={globalColors.accent}
+                textColor="white"
+                mode="contained"
+              >
+                Create team
+              </Button>
+            </View>
+          </KeyboardAvoidingView>
+        </View>
+      </Modal>
+    </>
   );
 };
 
