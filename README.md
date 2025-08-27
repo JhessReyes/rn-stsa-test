@@ -76,6 +76,7 @@ Los metodos creados fueron
 
 ### 3. Aspectos pendientes
 
+* **Splash Screen**. Requiere mas tiempo de implementacion si se opta por codigo nativo
 * **Modulo Nativo Pendiente - iOs:**. Tengo baja experiencia manejando el lenguaje, por lo que opte por implementar el modulo nativo de android
 
 ---
