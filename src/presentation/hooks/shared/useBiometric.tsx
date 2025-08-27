@@ -1,24 +1,28 @@
-import NativeBiometricsModule from '../../../../specs/NativeBiometricsModule';
+import { Alert, Platform } from 'react-native';
+import { useState } from 'react';
+import { biometricAdapter } from '../../../config/adapters/biometric-adapter';
 export const useBiometric = () => {
-  const isAvailable = async () => {
-    return await NativeBiometricsModule.isAvailable();
-  };
+  const [success, setSuccess] = useState(false);
 
-  const authenticate = async ({
-    reason,
-    allowDevicePasscode,
-  }: {
-    reason: string;
-    allowDevicePasscode: boolean;
-  }) => {
-    return await NativeBiometricsModule.authenticate(
-      reason,
-      allowDevicePasscode,
-    );
+  const onAuthenticate = async () => {
+    if (Platform.OS !== 'android') return;
+
+    if (Platform.OS === 'android') {
+      const { available } = await biometricAdapter.isAvailable();
+      if (!available) {
+        Alert.alert('Error', 'No biometrics available');
+        return;
+      }
+      const { success } = await biometricAdapter.authenticate(
+        'Authenticate to create a team',
+        true,
+      );
+      setSuccess(success);
+    }
   };
 
   return {
-    isAvailable,
-    authenticate,
+    success,
+    onAuthenticate,
   };
 };

@@ -1,44 +1,24 @@
 import React, { useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
-} from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import Modal from 'react-native-modal';
 import { globalColors } from '../../../config/theme/global-theme';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { useCreateTeam } from '../../hooks/team/useCreateTeam';
 import { IconButton } from '../shared';
-import { biometricAdapter } from '../../../config/adapters/biometric-adapter';
+import { useBiometric } from '../../hooks/shared/useBiometric';
 
 export const CreateTeamModal = () => {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
   const { mutateAsync } = useCreateTeam();
+  const { success, onAuthenticate } = useBiometric();
 
   const handleOpenModal = async () => {
     if (Platform.OS !== 'android') setVisible(true);
-
-    if (Platform.OS === 'android') {
-      const { available } = await biometricAdapter.isAvailable();
-
-      if (!available) {
-        Alert.alert('Error', 'No biometrics available');
-        return;
-      }
-
-      const { success } = await biometricAdapter.authenticate({
-        reason: 'Authenticate to create a team',
-        allowDevicePasscode: true,
-      });
-
-      if (success) setVisible(true);
-    } else {
-      setVisible(true);
-    }
+    await onAuthenticate();
+    if (!success) return;
+    setVisible(true);
   };
 
   const handleSend = async () => {
