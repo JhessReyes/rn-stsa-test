@@ -1,6 +1,5 @@
 import { View, Text, FlatList } from 'react-native';
 import React from 'react';
-import { AddTeamButton } from '../../components/teams';
 import { useQuery } from '@tanstack/react-query';
 import { getTeams } from '../../../actions/teams/get-all-teams';
 import { globalTheme } from '../../../config/theme/global-theme';
@@ -14,7 +13,7 @@ export const TeamsScreen = () => {
     refetch,
     isRefetching,
   } = useQuery({
-    queryKey: ['favorites'],
+    queryKey: ['teams'],
     queryFn: async () => getTeams(),
     staleTime: 1000 * 60 * 60, // 1 hour
   });

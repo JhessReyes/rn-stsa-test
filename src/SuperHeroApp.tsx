@@ -10,7 +10,9 @@ export const SuperHeroApp = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeAppContext>
-        <BottomTabNavigation />
+        {/* <BottomTabNavigation />
+        <TeamStackNavigator /> */}
+        <RootStackNavigator />
       </ThemeAppContext>
     </QueryClientProvider>
   );
