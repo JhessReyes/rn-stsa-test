@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import React from 'react';
 import { Button } from 'react-native-paper';
 import { globalColors } from '../../../config/theme/global-theme';
@@ -18,17 +18,13 @@ export const FavoriteButton = ({ hero }: { hero: HeroEntity }) => {
     }
   };
   return (
-    <Button
-      style={[styles.favoriteButton]}
-      contentStyle={{
-        height: 60,
-        borderWidth: 0,
-        padding: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 0,
-      }}
-      mode="text"
+    <Pressable
+      style={({ pressed }) => [
+        {
+          backgroundColor: pressed ? globalColors.yellow : globalColors.white,
+        },
+        styles.favoriteButton,
+      ]}
       onPress={clickHandler}
     >
       {hero.isFavorite ? (
@@ -48,20 +44,23 @@ export const FavoriteButton = ({ hero }: { hero: HeroEntity }) => {
           width={28}
         />
       )}
-    </Button>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   favoriteButton: {
-    width: 60,
-    height: 60,
     position: 'absolute',
     bottom: 10,
     right: 10,
     backgroundColor: globalColors.primary,
     borderRadius: 100,
-    padding: 0,
+    padding: 10,
     margin: 0,
+    elevation: 2,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   },
 });
