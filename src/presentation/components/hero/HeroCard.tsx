@@ -32,7 +32,7 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
           </Text>
           <View style={styles.heroAverageStatContainer}>
             <Icons.Superhero
-              fill={globalColors.accent}
+              fill={globalColors.yellow}
               stroke={globalColors.black}
             />
             <View style={{ flex: 1, flexDirection: 'row', gap: 4 }}>

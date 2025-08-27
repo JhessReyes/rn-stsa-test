@@ -3,15 +3,8 @@ import React from 'react';
 import { Button } from 'react-native-paper';
 import { Icons } from '../../../assets/icons';
 import { globalColors } from '../../../config/theme/global-theme';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../../navigation/RootStackNavigator';
 
-export const AddTeamButton = () => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
-  const handleClick = () => {
-    navigation.navigate('CreateTeamModal');
-  };
+export const AddTeamButton = ({ onPress }: { onPress: () => void }) => {
   return (
     <Button
       style={[styles.button]}
@@ -24,7 +17,7 @@ export const AddTeamButton = () => {
         margin: 0,
       }}
       mode="text"
-      onPress={handleClick}
+      onPress={onPress}
     >
       <Icons.Add strokeWidth="0.5" height={24} width={24} />
     </Button>

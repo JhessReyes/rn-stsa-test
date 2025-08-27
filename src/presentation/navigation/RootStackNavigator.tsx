@@ -17,14 +17,14 @@ export const RootStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Tabs" component={BottomTabNavigation} />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="CreateTeamModal"
         component={CreateTeamModal}
         options={{
           headerShown: false,
           presentation: 'modal',
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };

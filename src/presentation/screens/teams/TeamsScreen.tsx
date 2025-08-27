@@ -1,14 +1,16 @@
 import { View, Text, FlatList } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getTeams } from '../../../actions/teams/get-all-teams';
 import { globalTheme } from '../../../config/theme/global-theme';
 import { EmptyList } from '../../components/shared/EmptyList';
 import { CreateFirstTeme } from '../../components/teams/CreateFirstTeme';
+import { CreateTeamModal } from '../../components/teams/CreateTeamModal';
 
 export const TeamsScreen = () => {
+  const [visible, setVisible] = useState(false);
   const {
-    data: heroes,
+    data: teams,
     isLoading,
     refetch,
     isRefetching,
@@ -21,7 +23,7 @@ export const TeamsScreen = () => {
   return (
     <View style={[globalTheme.globalMargin, { flex: 1 }]}>
       <FlatList
-        data={heroes}
+        data={teams}
         onRefresh={refetch}
         refreshing={isRefetching}
         style={{
@@ -30,10 +32,10 @@ export const TeamsScreen = () => {
         }}
         ListEmptyComponent={
           <EmptyList
-            isEmpty={!heroes?.length}
+            isEmpty={!teams?.length}
             isLoading={isLoading}
             empty={{
-              component: () => <CreateFirstTeme />,
+              component: () => <CreateFirstTeme setVisible={setVisible} />,
             }}
           />
         }
@@ -42,6 +44,7 @@ export const TeamsScreen = () => {
         numColumns={1}
         keyExtractor={(item, index) => item.id.toString() + index}
       />
+      <CreateTeamModal visible={visible} setVisible={setVisible} />
     </View>
   );
 };

@@ -12,6 +12,8 @@ export const globalColors = {
   primary: '#6A4DBC',
   base: '#B8B5C1',
   surface: '#6A4DBC3D',
-  accent: '#FFCC00',
+  secondary: '#362C6A',
+  accent: '#8067FF',
+  yellow: '#FFCC00',
   background: '#11072F',
 };
