@@ -12,3 +12,9 @@ export interface FavoriteResonpe {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface InternalApiSwitchFavoriteResponse {
+  message: string;
+  error?: string;
+  trace?: any;
+}

@@ -6,6 +6,7 @@ export interface HeroEntity {
   alterEgos: string;
   powerStats: HeroStatsEntity;
   averageStats: number;
+  isFavorite: boolean;
 }
 
 export interface HeroStatsEntity {

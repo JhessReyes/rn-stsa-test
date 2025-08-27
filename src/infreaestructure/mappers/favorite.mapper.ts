@@ -6,7 +6,7 @@ export class FavoriteMapper {
     return {
       id: favoriteApi.id,
       superheroId: favoriteApi.superheroId,
-      superhero: favoriteApi.superhero,
+      superhero: { ...favoriteApi.superhero, isFavorite: true },
     };
   }
 }

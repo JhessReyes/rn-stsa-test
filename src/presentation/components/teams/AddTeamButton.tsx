@@ -18,11 +18,7 @@ export const AddTeamButton = () => {
       }}
       mode="text"
     >
-      <Icons.Add
-        strokeWidth="0.5"
-        height={24}
-        width={24}
-      />
+      <Icons.Add strokeWidth="0.5" height={24} width={24} />
     </Button>
   );
 };

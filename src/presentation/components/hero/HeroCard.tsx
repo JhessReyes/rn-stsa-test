@@ -21,7 +21,7 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
             style={styles.heroImage}
             resizeMode="cover"
           />
-          <FavoriteButton />
+          <FavoriteButton hero={hero} />
         </View>
         <View style={styles.textContainer}>
           <Text variant="titleLarge" style={{ color: globalColors.white }}>

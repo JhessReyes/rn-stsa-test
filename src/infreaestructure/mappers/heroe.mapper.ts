@@ -1,5 +1,6 @@
 import { HeroEntity } from '../../domain/entities/hero.entity';
 import { HeroApiHeroeResponse } from '../interfaces/heroApi.interfaces';
+import { FavoriteResonpe } from '../interfaces/internalApi.interfaces';
 
 export class HeroMapper {
   static heroApiHeroeToEntity(heroApiHeroe: HeroApiHeroeResponse): HeroEntity {
@@ -19,6 +20,24 @@ export class HeroMapper {
           ) / 6,
         )?.toFixed(2),
       ),
+      isFavorite: false,
     };
+  }
+
+  static heroApiHeroesToEntities(
+    heroApiHeroes: HeroApiHeroeResponse[],
+    favorites: FavoriteResonpe[],
+  ): HeroEntity[] {
+    return heroApiHeroes.map(heroApiHeroe => {
+      const _hero = this.heroApiHeroeToEntity(heroApiHeroe);
+      const favorite = favorites.find(
+        favorite => favorite.superheroId == _hero.id,
+      );
+
+      return {
+        ..._hero,
+        isFavorite: favorite ? true : false,
+      };
+    });
   }
 }

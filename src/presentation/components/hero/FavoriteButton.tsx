@@ -3,8 +3,20 @@ import React from 'react';
 import { Button } from 'react-native-paper';
 import { globalColors } from '../../../config/theme/global-theme';
 import { Icons } from '../../../assets/icons';
+import { useSwitchFavorite } from '../../hooks/favorite/useSwitchFavorite';
+import { HeroEntity } from '../../../domain/entities/hero.entity';
 
-export const FavoriteButton = () => {
+export const FavoriteButton = ({ hero }: { hero: HeroEntity }) => {
+  const { mutateAsync, isPending } = useSwitchFavorite();
+
+  const clickHandler = async () => {
+    if (isPending) return;
+    try {
+      await mutateAsync({ hero });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Button
       style={[styles.favoriteButton]}
@@ -17,14 +29,25 @@ export const FavoriteButton = () => {
         margin: 0,
       }}
       mode="text"
+      onPress={clickHandler}
     >
-      <Icons.HeartOutline
-        fill={globalColors.white}
-        stroke={globalColors.white}
-        strokeWidth="2"
-        height={28}
-        width={28}
-      />
+      {hero.isFavorite ? (
+        <Icons.Heart
+          fill={globalColors.white}
+          stroke={globalColors.white}
+          strokeWidth="2"
+          height={28}
+          width={28}
+        />
+      ) : (
+        <Icons.HeartOutline
+          fill={globalColors.white}
+          stroke={globalColors.white}
+          strokeWidth="2"
+          height={28}
+          width={28}
+        />
+      )}
     </Button>
   );
 };
