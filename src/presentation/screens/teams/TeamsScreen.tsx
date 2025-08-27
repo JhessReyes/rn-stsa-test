@@ -40,7 +40,9 @@ export const TeamsScreen = () => {
           />
         }
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <Text> {item.name}</Text>}
+        renderItem={({ item }) => (
+          <Text style={{ color: 'white' }}> {item.name}</Text>
+        )}
         numColumns={1}
         keyExtractor={(item, index) => item.id.toString() + index}
       />

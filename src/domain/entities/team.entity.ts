@@ -3,7 +3,7 @@ import { HeroEntity } from './hero.entity';
 export interface TeamEntity {
   id: string;
   name: string;
-  members: TeamMemberEntity[];
+  members?: TeamMemberEntity[];
   createdAt: string;
   updatedAt: string;
 }

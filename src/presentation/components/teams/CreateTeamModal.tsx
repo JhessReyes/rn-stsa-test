@@ -9,6 +9,7 @@ import {
 import Modal from 'react-native-modal';
 import { globalColors } from '../../../config/theme/global-theme';
 import { Button, Text, TextInput } from 'react-native-paper';
+import { useCreateTeam } from '../../hooks/team/useCreateTeam';
 
 type ModalProps = {
   visible: boolean;
@@ -18,17 +19,17 @@ type ModalProps = {
 export const CreateTeamModal = ({ visible, setVisible }: ModalProps) => {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
+  const { mutateAsync } = useCreateTeam();
 
   const handleSend = async () => {
     setLoading(true);
     try {
-      /*  if (question.trim().length === 0) return;
-      await onSubmit(question);
-      setQuestion('');
-      onClose(); */
+      if (name.trim().length === 0) return;
+      await mutateAsync({ name });
     } catch (error) {
       setLoading(false);
     } finally {
+      setName('');
       setLoading(false);
     }
   };

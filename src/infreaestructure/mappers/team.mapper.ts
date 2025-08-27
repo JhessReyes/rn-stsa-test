@@ -12,7 +12,7 @@ export class TeamMapper {
     return {
       id: teamApi.id,
       name: teamApi.name,
-      members: teamApi.members.map(memberApi =>
+      members: teamApi?.members?.map(memberApi =>
         this.teamMemberApiToEntity(memberApi),
       ),
       createdAt: teamApi.createdAt,

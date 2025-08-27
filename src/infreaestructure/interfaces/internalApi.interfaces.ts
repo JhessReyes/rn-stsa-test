@@ -40,3 +40,10 @@ export interface InternalApiTeamMemberResponse {
   superheroId: string;
   superhero: HeroEntity;
 }
+
+export interface InternalApiTeamCreatedResponse {
+  message: string;
+  team: InternalApiTeamResponse;
+  error?: string;
+  trace?: any;
+}
