@@ -1,10 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TabSuperHeroesScreen } from '../screens/tabs/TabSuperHeroesScreen';
-import { TabTeamsScreen } from '../screens/tabs/TabTeamsScreen';
 import { TabFavoritesScreen } from '../screens/tabs/TabFavoritesScreen';
 import { globalColors } from '../../config/theme/global-theme';
 import { Icons } from '../../assets/icons';
-const Tab = createBottomTabNavigator();
+import { TeamStackNavigator } from './TeamStackNavigator';
+
+export const Tab = createBottomTabNavigator();
 
 export const BottomTabNavigation = () => {
   return (
@@ -37,14 +38,17 @@ export const BottomTabNavigation = () => {
         component={TabSuperHeroesScreen}
       />
       <Tab.Screen
-        name="Teams"
+        name="TeamStack"
         options={{
           tabBarIcon: ({ color }) => (
             <Icons.Team fill="none" stroke={color} strokeWidth="2" />
           ),
+          headerShown: false,
+          tabBarLabel: 'Teams',
         }}
-        component={TabTeamsScreen}
+        component={TeamStackNavigator}
       />
+
       <Tab.Screen
         name="Favorites"
         options={{

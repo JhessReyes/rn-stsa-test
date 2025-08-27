@@ -5,14 +5,20 @@ import { Card } from 'react-native-paper';
 import { TeamEntity } from '../../../domain/entities/team.entity';
 import { Text } from 'react-native-paper';
 import { Icons } from '../../../assets/icons';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { AppStackParamList } from '../../navigation/RootStackNavigator';
 
 export const TeamCard = ({ team }: { team: TeamEntity }) => {
+  const navigation = useNavigation<NavigationProp<AppStackParamList>>();
   return (
-    <Card style={styles.cardContainer}>
+    <Card
+      style={styles.cardContainer}
+      onPress={() => navigation.navigate('Team', { id: team.id })}
+    >
       <View style={styles.row}>
         <View style={styles.textContainer}>
           <Text variant="titleLarge" style={{ color: globalColors.white }}>
-            Team name
+            {team.name}
           </Text>
 
           <Text variant="bodySmall" style={{ color: globalColors.base }}>
