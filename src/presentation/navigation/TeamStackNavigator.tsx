@@ -74,7 +74,12 @@ export const TeamStackNavigator = () => {
             >
               <IconButton
                 name="add"
-                onPress={() => navigation.navigate('SearchHeroModal')}
+                onPress={() =>
+                  navigation.navigate('SearchHeroModal', {
+                    members: route.params?.team?.members || [],
+                    teamId: route.params?.team?.id || '',
+                  })
+                }
               />
             </View>
           ),

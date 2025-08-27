@@ -1,10 +1,11 @@
-import { View, Dimensions, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet, ViewStyle } from 'react-native';
 import React from 'react';
 import { ActivityIndicator } from 'react-native-paper';
 import { globalColors } from '../../../config/theme/global-theme';
 import { Text } from 'react-native-paper';
 
 type EmptyListProps = {
+  style?: ViewStyle;
   isLoading?: boolean;
   isError?: boolean;
   error?: Error | null;
@@ -25,6 +26,7 @@ export const EmptyList: React.FC<EmptyListProps> = ({
   isEmpty,
   skeleton,
   empty,
+  style,
 }) => {
   const { height } = Dimensions.get('window');
 
@@ -60,6 +62,7 @@ export const EmptyList: React.FC<EmptyListProps> = ({
           height: height / 2,
           backgroundColor: globalColors.background,
         },
+        style,
       ]}
     >
       {getScreen()}

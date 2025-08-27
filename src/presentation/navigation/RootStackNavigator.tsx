@@ -5,11 +5,12 @@ import { HeroScreen } from '../screens/hero/HeroScreen';
 import { SearchHeroScreen } from '../screens/hero/SearchHeroScreen';
 import { HeroEntity } from '../../domain/entities/hero.entity';
 import { HeroHeader } from '../components/hero/Header';
+import { TeamMemberEntity } from '../../domain/entities/team.entity';
 
 export type RootStackParamList = {
   Tabs: undefined;
   Hero: { hero: HeroEntity };
-  SearchHeroModal: undefined;
+  SearchHeroModal: { members: TeamMemberEntity[]; teamId: string };
 };
 
 export type AppStackParamList = RootStackParamList & TeamStackParamList;

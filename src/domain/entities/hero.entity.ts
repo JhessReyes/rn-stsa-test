@@ -2,6 +2,7 @@ export interface HeroEntity {
   id: number;
   name: string;
   avatar: string;
+  avatarSmall: string;
   realName: string;
   alterEgos: string;
   powerStats: HeroStatsEntity;

@@ -7,6 +7,7 @@ export class HeroMapper {
     return {
       id: heroApiHeroe.id,
       avatar: heroApiHeroe.images.lg,
+      avatarSmall: heroApiHeroe.images.sm,
       name: heroApiHeroe.name,
       realName: heroApiHeroe.biography.fullName || 'No real name found.',
       alterEgos: heroApiHeroe.biography.alterEgos || 'No alter egos found.',

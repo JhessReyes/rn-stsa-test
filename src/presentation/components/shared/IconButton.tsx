@@ -9,9 +9,15 @@ type IconButtonProps = {
   name: 'teams' | 'add' | 'heart' | 'superhero' | 'favorite' | 'left';
   onPress: () => void;
   iconProps?: SvgProps;
+  disabled?: boolean;
 };
 
-export const IconButton = ({ onPress, name, iconProps }: IconButtonProps) => {
+export const IconButton = ({
+  onPress,
+  name,
+  iconProps,
+  disabled,
+}: IconButtonProps) => {
   const getIcon = () => {
     const props = {
       width: 12,
@@ -40,7 +46,10 @@ export const IconButton = ({ onPress, name, iconProps }: IconButtonProps) => {
   };
 
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+    <Pressable
+      style={[styles.button, disabled && styles.disabled]}
+      onPress={onPress}
+    >
       {getIcon()}
     </Pressable>
   );
@@ -51,5 +60,8 @@ const styles = StyleSheet.create({
     backgroundColor: globalColors.primary,
     borderRadius: 25,
     padding: 12,
+  },
+  disabled: {
+    backgroundColor: globalColors.surface,
   },
 });
