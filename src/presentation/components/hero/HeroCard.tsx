@@ -6,14 +6,21 @@ import { globalColors } from '../../../config/theme/global-theme';
 import { Icons } from '../../../assets/icons';
 import { Text } from 'react-native-paper';
 import { FavoriteButton } from './FavoriteButton';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { AppStackParamList } from '../../navigation/RootStackNavigator';
 
 type HeroCardProps = {
   hero: HeroEntity;
 };
 
 export const HeroCard = ({ hero }: HeroCardProps) => {
+  const navigation = useNavigation<NavigationProp<AppStackParamList>>();
+
   return (
-    <Card style={styles.cardContainer}>
+    <Card
+      style={styles.cardContainer}
+      onPress={() => navigation.navigate('Hero', { id: hero.id?.toString() })}
+    >
       <View style={styles.row}>
         <View style={styles.heroImageContainer}>
           <Image

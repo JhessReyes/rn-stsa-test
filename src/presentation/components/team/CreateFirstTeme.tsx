@@ -1,7 +1,6 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
-import { IconMessage } from '../shared/IconMessage';
-import { AddTeamButton } from './AddTeamButton';
+import { IconMessage, IconButton } from '../shared';
 
 export const CreateFirstTeme = ({
   setVisible,
@@ -18,7 +17,7 @@ export const CreateFirstTeme = ({
       }}
     >
       <IconMessage name="teams" message="Create your first team" />
-      <AddTeamButton onPress={() => setVisible(true)} />
+      <IconButton name="add" onPress={() => setVisible(true)} />
     </View>
   );
 };

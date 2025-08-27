@@ -13,7 +13,9 @@ export const TeamCard = ({ team }: { team: TeamEntity }) => {
   return (
     <Card
       style={styles.cardContainer}
-      onPress={() => navigation.navigate('Team', { id: team.id })}
+      onPress={() =>
+        navigation.navigate('Team', { id: team.id, name: team.name })
+      }
     >
       <View style={styles.row}>
         <View style={styles.textContainer}>

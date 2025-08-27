@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TeamsScreen } from '../screens/teams/TeamsScreen';
 import { TeamScreen } from '../screens/teams/TeamScreen';
 import { globalColors } from '../../config/theme/global-theme';
+import { Icons } from '../../assets/icons';
+import { IconButton } from '../components/shared';
+import { Pressable, View } from 'react-native';
+import { AppStackParamList } from './RootStackNavigator';
 
 export type TeamStackParamList = {
   Teams: undefined;
-  Team: { id: string };
+  Team: { id: string; name: string };
 };
 
-const TeamStack = createStackNavigator<TeamStackParamList>();
+const TeamStack = createStackNavigator<AppStackParamList>();
 export const TeamStackNavigator = () => {
+  const [name, setName] = useState<string>('');
   return (
     <TeamStack.Navigator
       screenOptions={{
@@ -28,8 +33,37 @@ export const TeamStackNavigator = () => {
       }}
     >
       <TeamStack.Screen name="Teams" component={TeamsScreen} />
-     
-      <TeamStack.Screen name="Team" component={TeamScreen} />
+
+      <TeamStack.Screen
+        name="Team"
+        options={({ route, navigation }) => ({
+          headerTitle: route.params.name,
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <Pressable
+              onPress={() => navigation.goBack()}
+              style={{ paddingHorizontal: 10 }}
+            >
+              <Icons.Left stroke={globalColors.white} height={40} width={40} />
+            </Pressable>
+          ),
+          headerRight: () => (
+            <View
+              style={{
+                padding: 10,
+                alignContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <IconButton
+                name="add"
+                onPress={() => navigation.navigate('SearchHeroModal')}
+              />
+            </View>
+          ),
+        })}
+        component={TeamScreen}
+      />
     </TeamStack.Navigator>
   );
 };
