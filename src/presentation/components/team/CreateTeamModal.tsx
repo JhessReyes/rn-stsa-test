@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+  Alert,
+} from 'react-native';
 import Modal from 'react-native-modal';
 import { globalColors } from '../../../config/theme/global-theme';
 import { Button, Text, TextInput } from 'react-native-paper';
@@ -19,16 +25,17 @@ export const CreateTeamModal = () => {
     if (Platform.OS === 'android') {
       const { available } = await biometricAdapter.isAvailable();
 
-      if (available) {
-        const { success } = await biometricAdapter.authenticate({
-          reason: 'Authenticate to create a team',
-          allowDevicePasscode: true,
-        });
-
-        if (success) {
-          setVisible(true);
-        }
+      if (!available) {
+        Alert.alert('Error', 'No biometrics available');
+        return;
       }
+
+      const { success } = await biometricAdapter.authenticate({
+        reason: 'Authenticate to create a team',
+        allowDevicePasscode: true,
+      });
+
+      if (success) setVisible(true);
     } else {
       setVisible(true);
     }
