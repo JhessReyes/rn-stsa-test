@@ -4,6 +4,7 @@ import { globalTheme } from '../../../config/theme/global-theme';
 import { getHeroes } from '../../../actions/heroes/get-all-heroes';
 import { useQuery } from '@tanstack/react-query';
 import { HeroCard } from '../../components/hero/HeroCard';
+import { EmptyList } from '../../components/shared/EmptyList';
 
 export const HeroesScreen = () => {
   const { data: heroes, isLoading } = useQuery({
@@ -19,6 +20,9 @@ export const HeroesScreen = () => {
         style={{
           paddingTop: 20,
         }}
+        ListEmptyComponent={
+          <EmptyList isEmpty={!heroes?.length} isLoading={isLoading} />
+        }
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => <HeroCard hero={item} />}
         numColumns={1}

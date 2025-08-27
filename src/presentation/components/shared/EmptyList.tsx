@@ -5,7 +5,7 @@ import { globalColors } from '../../../config/theme/global-theme';
 import { Text } from 'react-native-paper';
 
 type EmptyListProps = {
-  isLoading: boolean;
+  isLoading?: boolean;
   isError?: boolean;
   error?: Error | null;
   skeleton?: {

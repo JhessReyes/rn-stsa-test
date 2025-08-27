@@ -4,6 +4,8 @@ import { AppStackParamList } from '../../navigation/RootStackNavigator';
 import { StackScreenProps } from '@react-navigation/stack';
 import { globalTheme } from '../../../config/theme/global-theme';
 import { HeroCard } from '../../components/hero/HeroCard';
+import { EmptyList } from '../../components/shared/EmptyList';
+import { IconMessage } from '../../components/shared';
 
 type Props = StackScreenProps<AppStackParamList, 'Team'>;
 
@@ -16,6 +18,16 @@ export const TeamScreen = ({ route }: Props) => {
         style={{
           paddingTop: 20,
         }}
+        ListEmptyComponent={
+          <EmptyList
+            isEmpty={!team.members?.length}
+            empty={{
+              component: () => (
+                <IconMessage name="teams" message="No members" />
+              ),
+            }}
+          />
+        }
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => <HeroCard hero={item.hero} />}
         numColumns={1}
