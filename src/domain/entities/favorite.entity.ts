@@ -2,6 +2,6 @@ import { HeroEntity } from './hero.entity';
 
 export interface FavoriteEntity {
   id: number;
-  superheroId: number;
-  superhero: HeroEntity;
+  heroId: number;
+  hero: HeroEntity;
 }

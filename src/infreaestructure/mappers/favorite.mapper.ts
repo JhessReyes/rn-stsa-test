@@ -5,8 +5,8 @@ export class FavoriteMapper {
   static favoriteApiToEntity(favoriteApi: FavoriteResonpe): FavoriteEntity {
     return {
       id: favoriteApi.id,
-      superheroId: favoriteApi.superheroId,
-      superhero: { ...favoriteApi.superhero, isFavorite: true },
+      heroId: favoriteApi.superheroId,
+      hero: favoriteApi.superhero,
     };
   }
 }

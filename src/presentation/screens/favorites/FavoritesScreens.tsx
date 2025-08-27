@@ -39,7 +39,7 @@ export const FavoritesScreens = () => {
           />
         }
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <HeroCard hero={item.superhero} />}
+        renderItem={({ item }) => <HeroCard hero={item.hero} />}
         numColumns={1}
         keyExtractor={(item, index) => item.id.toString() + index}
       />

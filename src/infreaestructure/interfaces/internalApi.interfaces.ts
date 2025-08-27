@@ -18,3 +18,25 @@ export interface InternalApiSwitchFavoriteResponse {
   error?: string;
   trace?: any;
 }
+
+export interface InternalApiTeamsResponse {
+  message: string;
+  teams: InternalApiTeamResponse[];
+  error?: string;
+  trace?: any;
+}
+
+export interface InternalApiTeamResponse {
+  id: string;
+  name: string;
+  members: InternalApiTeamMemberResponse[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface InternalApiTeamMemberResponse {
+  id: string;
+  teamId: string;
+  superheroId: string;
+  superhero: HeroEntity;
+}

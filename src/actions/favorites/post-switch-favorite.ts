@@ -10,7 +10,7 @@ export const postSwitchFavorite = async ({
     const url = `/switch-favorite`;
     const { data } = await internalApi.post<InternalApiSwitchFavoriteResponse>(
       url,
-      { superhero: hero },
+      { superhero: { ...hero, isFavorite: true } },
     );
 
     return data;

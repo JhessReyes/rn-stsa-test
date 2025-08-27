@@ -1,8 +1,9 @@
 import { internalApi } from '../../config/api/internalApi';
+import { FavoriteEntity } from '../../domain/entities/favorite.entity';
 import { InternalApiFavoritesResponse } from '../../infreaestructure/interfaces/internalApi.interfaces';
 import { FavoriteMapper } from '../../infreaestructure/mappers/favorite.mapper';
 
-export const getFavorites = async (): Promise<any> => {
+export const getFavorites = async (): Promise<FavoriteEntity[]> => {
   try {
     const url = `/favorites`;
     const { data } = await internalApi.get<InternalApiFavoritesResponse>(url);
